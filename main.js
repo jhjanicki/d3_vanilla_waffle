@@ -73,31 +73,23 @@ const waffleDataSummed = sumSortWaffleData(data);
 const waffleData = createWaffleData(waffleDataSummed);
 
 // all variables related to dimensions
-
 const length = 400;
-const marginLength = 30;
+const margin = 30;
 
 const categoryHeight = 20;
 const legendPadding = 20;
 const legendHeight = categoryHeight*categoriesSorted.length;
 
-const margin = {
-    "top": marginLength ,
-    "left": marginLength,
-    "bottom": marginLength,
-    "right": marginLength 
-}
-
 const unitDimension = 10;
 
 //create SVG & G
-const svg = d3.select("#chart").append("svg").attr("width", length + margin.left + margin.right).attr("height", length + margin.top + margin.bottom + legendHeight );
+const svg = d3.select("#chart").append("svg").attr("width", length + margin*2).attr("height", length + margin*2 + legendHeight );
 
 const chartG = svg.append("g").attr("class", "chartWrapper")
-    .attr("transform", `translate(${margin.left},${margin.top})`)
+    .attr("transform", `translate(${margin},${margin})`)
 
 const legendG = svg.append("g").attr("class", "legendWrapper")
-    .attr("transform", `translate(${margin.left}, ${margin.top + legendPadding + length})`)
+    .attr("transform", `translate(${margin}, ${margin + legendPadding + length})`)
 
 // add all units & text
 chartG.selectAll(`rect.unit`)
